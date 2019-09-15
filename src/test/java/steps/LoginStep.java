@@ -67,7 +67,7 @@ public class LoginStep extends BaseUtil{
     }
 
     @And("^I enter ([^\"]*) and ([^\"]*)$")
-    public void iEnterUsernameAndPassword(String userName, String password) throws Throwable {
+	public void iEnterUsernameAndPassword(String userName, String password) throws Throwable {
         scenarioDef.createNode(new GherkinKeyword("And"), "I enter username and password");
         System.out.println("UserName is : " + userName);
         System.out.println("Password is : " + password);

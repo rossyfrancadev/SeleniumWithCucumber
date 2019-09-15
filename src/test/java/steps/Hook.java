@@ -6,44 +6,43 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import base.BaseUtil;
+
 /**
  * Created by Karthik on 31/01/2019.
  */
 
-public class Hook extends BaseUtil{
+public class Hook extends BaseUtil {
 
+	private BaseUtil base;
 
-    private BaseUtil base;
+	public Hook(BaseUtil base) {
+		this.base = base;
+	}
 
-    public Hook(BaseUtil base) {
-        this.base = base;
-    }
+	@Before
+	public void InitializeTest(Scenario scenario) {
 
-    @Before
-    public void InitializeTest(Scenario scenario) {
+		scenarioDef = BaseUtil.features.createNode(scenario.getName());
 
+		System.out.println("Opening the browser : Firefox");
 
-        scenarioDef = base.features.createNode(scenario.getName());
+		/*
+		 * System.setProperty("webdriver.firefox.marionette",
+		 * "D:\\Libs\\geckodriver.exe"); base.Driver = new FirefoxDriver();
+		 */
 
-        System.out.println("Opening the browser : Firefox");
+		// Chrome driver
+		System.setProperty("webdriver.chrome.driver", "C:\\Libs\\chromedriver");
+		base.Driver = new ChromeDriver();
+	}
 
-        /*System.setProperty("webdriver.firefox.marionette", "D:\\Libs\\geckodriver.exe");
-        base.Driver = new FirefoxDriver();*/
-
-
-        //Chrome driver
-        System.setProperty("webdriver.chrome.driver", "C:\\Libs\\chromedriver");
-        base.Driver = new ChromeDriver();
-    }
-
-
-    @After
-    public void TearDownTest(Scenario scenario) {
-        if (scenario.isFailed()) {
-            //Take screenshot logic goes here
-            System.out.println(scenario.getName());
-        }
-        System.out.println("Closing the browser : MOCK");
-    }
+	@After
+	public void TearDownTest(Scenario scenario) {
+		if (scenario.isFailed()) {
+			// Take screenshot logic goes here
+			System.out.println(scenario.getName());
+		}
+		System.out.println("Closing the browser : MOCK");
+	}
 
 }
