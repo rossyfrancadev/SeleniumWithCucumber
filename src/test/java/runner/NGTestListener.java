@@ -1,14 +1,16 @@
 package runner;
 
-import Base.ExtentReportUtil;
 import com.aventstack.extentreports.gherkin.model.Feature;
+
+import base.ExtentReportUtil;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.IOException;
+import static base.BaseUtil.features;
 
-import static Base.BaseUtil.features;
+import java.io.IOException;
 
 /**
  * Created by Karthik on 31/01/2019.
@@ -18,18 +20,15 @@ public class NGTestListener implements ITestListener {
 
     ExtentReportUtil extentReportUtil = new ExtentReportUtil();
 
-    @Override
     public void onTestStart(ITestResult iTestResult) {
         System.out.println("On test start");
     }
 
-    @Override
     public void onTestSuccess(ITestResult iTestResult) {
 
         System.out.println("On test Sucess");
     }
 
-    @Override
     public void onTestFailure(ITestResult iTestResult) {
         System.out.println("On test failure");
 
@@ -40,17 +39,14 @@ public class NGTestListener implements ITestListener {
         }
     }
 
-    @Override
     public void onTestSkipped(ITestResult iTestResult) {
         System.out.println("On test skipped");
     }
 
-    @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         System.out.println("On test percentage");
     }
 
-    @Override
     public void onStart(ITestContext iTestContext) {
         System.out.println("On start");
 
@@ -61,7 +57,6 @@ public class NGTestListener implements ITestListener {
 
     }
 
-    @Override
     public void onFinish(ITestContext iTestContext) {
         System.out.println("On finish");
         extentReportUtil.FlushReport();
