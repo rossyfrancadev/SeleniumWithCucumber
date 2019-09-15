@@ -19,10 +19,11 @@ public class Hook extends BaseUtil {
 		this.base = base;
 	}
 
+	@SuppressWarnings("static-access")
 	@Before
 	public void InitializeTest(Scenario scenario) {
 
-		scenarioDef = BaseUtil.features.createNode(scenario.getName());
+		scenarioDef = base.features.createNode(scenario.getName());
 
 		System.out.println("Opening the browser : Firefox");
 
